@@ -6,6 +6,8 @@ const Weather = () => {
 
     const [weather, setWheather] = useState({});
 
+    const [changeTemp, setChangeTemp] = useState(true);
+
       useEffect(()=>{
 
         function success(pos) {
@@ -15,7 +17,7 @@ const Weather = () => {
           console.log(`Latitude : ${crd.latitude}`);
           console.log(`Longitude: ${crd.longitude}`);
           console.log(`More or less ${crd.accuracy} meters.`);
-          axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=d200a8eb35acdb0332db3335d5175b2f`)
+          axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=d200a8eb35acdb0332db3335d5175b2f&units=imperial`)
             .then(res => setWheather(res.data));
         }
 
@@ -24,12 +26,12 @@ const Weather = () => {
         }
 
         navigator.geolocation.getCurrentPosition(success, error);
-        
+
     }, []);
-    
+
     console.log(weather);
 
-        
+
     return (
         <div>
             <h1>Weather App</h1>
@@ -39,9 +41,13 @@ const Weather = () => {
             <h3>Wind speed: {weather.wind?.speed}</h3>
             <h3>Clouds: {weather.clouds?.all}%</h3>
             <h3>Pressure: {weather.main?.pressure}</h3>
-            <h3>{weather.main?.temp} ºC</h3>
-            <button>Degrees ºF / ºC</button>
+            <h3>{
+              changeTemp ? `${Math.ceil(weather.main?.temp)} ºF`:
+              `${Math.ceil((weather.main?.temp -32) * 5/9)} ºC` }
+            </h3>
+            <button onClick={() => setChangeTemp(!changeTemp)}>Degrees ºF / ºC</button>
             
+
         </div>
     );
 };
