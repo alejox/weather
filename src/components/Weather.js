@@ -46,9 +46,9 @@ const Weather = () => {
             </div>
             <div className='info'>
             <p><b>Condition: </b>{weather.weather?.[0].description}</p>
-            <p><b>Wind speed:</b> {weather.wind?.speed}</p>
+            <p><b>Wind speed:</b> {weather.wind?.speed} m/s</p>
             <p><b>Clouds:</b> {weather.clouds?.all}%</p>
-            <p><b>Pressure:</b> {weather.main?.pressure}</p>
+            <p><b>Pressure:</b> {weather.main?.pressure} mb</p>
             </div>
             </div>
             
