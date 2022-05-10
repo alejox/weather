@@ -33,18 +33,25 @@ const Weather = () => {
 
 
     return (
-        <div>
+        <div className='container'>
             <h1>Weather App</h1>
             <h3>{weather.name}, {weather.sys?.country}</h3>
+            <div className='weather'>
+            <div className='infoTemp'>
             <img src={`http://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`} alt="" />
-            <h3>{weather.weather?.[0].description}</h3>
-            <h3>Wind speed: {weather.wind?.speed}</h3>
-            <h3>Clouds: {weather.clouds?.all}%</h3>
-            <h3>Pressure: {weather.main?.pressure}</h3>
             <h3>{
               changeTemp ? `${Math.ceil(weather.main?.temp)} ºF`:
               `${Math.ceil((weather.main?.temp -32) * 5/9)} ºC` }
             </h3>
+            </div>
+            <div className='info'>
+            <p><b>Condition: </b>{weather.weather?.[0].description}</p>
+            <p><b>Wind speed:</b> {weather.wind?.speed}</p>
+            <p><b>Clouds:</b> {weather.clouds?.all}%</p>
+            <p><b>Pressure:</b> {weather.main?.pressure}</p>
+            </div>
+            </div>
+            
             <button onClick={() => setChangeTemp(!changeTemp)}>Degrees ºF / ºC</button>
             
 
