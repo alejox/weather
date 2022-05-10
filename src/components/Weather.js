@@ -40,8 +40,8 @@ const Weather = () => {
             <div className='infoTemp'>
             <img src={`http://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`} alt="" />
             <h3>{
-              changeTemp ? `${Math.ceil(weather.main?.temp)} ºF`:
-              `${Math.ceil((weather.main?.temp -32) * 5/9)} ºC` }
+              changeTemp ? `${Math.round(weather.main?.temp)} ºF`:
+              `${Math.round((weather.main?.temp -32) * 5/9)} ºC` }
             </h3>
             </div>
             <div className='info'>
